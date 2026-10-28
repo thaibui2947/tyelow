@@ -1,4 +1,16 @@
-/* ĐẶT ĐOẠN NÀY Ở TRÊN CÙNG CỦA FILE CSS */
+html {
+    scroll-behavior: smooth;
+    /* Bù trừ khoảng cách nếu bạn có thanh Header cố định ở trên cùng (Sticky Header) */
+    scroll-padding-top: 80px; 
+}
+
+body {
+    /* Tối ưu cuộn mượt trên thiết bị di động iOS/Android */
+    -webkit-overflow-scrolling: touch;
+    /* Tránh hiện tượng cuộn lệch ngang màn hình trên điện thoại */
+    overflow-x: hidden; 
+}
+
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -1147,3 +1159,25 @@ body {
 .vote-count { font-size: 15px; color: #555; }
 .vote-count strong { color: var(--accent-orange); font-size: 20px; font-weight: 800; }
 .vote-thanks-msg { margin-top: 16px; color: #0e6b30; font-weight: 600; font-size: 14px; animation: fadeIn 0.5s; }
+/* =========================================================
+   THANH CUỘN
+   ========================================================= */
+   /* Tùy chỉnh thanh cuộn cho Chrome, Edge, Safari */
+::-webkit-scrollbar {
+    width: 8px; /* Độ rộng thanh cuộn */
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(15, 23, 42, 0.6); /* Nền đường ray cuộn */
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2); /* Màu thanh trượt */
+    border-radius: 20px;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.4); /* Sáng lên khi rê chuột vào */
+}
