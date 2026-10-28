@@ -1354,18 +1354,21 @@ a:active,
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
 }
 /* Styling cho vòng tròn gợn sáng khi click */
-.ripple-btn {
+.ripple-btn:not(.back-to-top) {
     position: relative;
-    overflow: hidden !important; /* Giữ vòng tròn nằm gọn trong góc bo của nút */
+}
+
+.ripple-btn {
+    overflow: hidden !important;
 }
 
 .ripple-circle {
     position: absolute;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.4); /* Màu ánh sáng gợn ra */
+    background: rgba(255, 255, 255, 0.4); 
     transform: scale(0);
     animation: ripple-out 0.55s linear;
-    pointer-events: none; /* Tránh cản trở sự kiện click */
+    pointer-events: none; 
 }
 
 @keyframes ripple-out {
