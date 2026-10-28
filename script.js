@@ -313,3 +313,25 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+// ==================== TỐI ƯU LỊCH SỬ CHUYỂN TRANG (NO HISTORY STACK) ====================
+document.addEventListener('DOMContentLoaded', () => {
+    // Tìm tất cả các link trên thanh menu có class 'nav-link'
+    const menuLinks = document.querySelectorAll('a.nav-link');
+
+    menuLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const targetUrl = this.getAttribute('href');
+
+            // Bỏ qua nếu đây là link trượt cuộn trang (có chứa dấu #) hoặc link trống
+            if (!targetUrl || targetUrl.includes('#') || targetUrl.startsWith('javascript')) {
+                return;
+            }
+
+            // Ngăn chặn trình duyệt mở link theo cách thông thường (tạo thêm lịch sử)
+            e.preventDefault();
+
+            // Chuyển sang trang mới bằng cách ghi đè lịch sử hiện tại
+            window.location.replace(targetUrl);
+        });
+    });
+});

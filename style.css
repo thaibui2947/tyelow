@@ -120,6 +120,11 @@ body {
     border-radius: 20px;
 }
 
+.nav-link svg, 
+.nav-link img {
+    flex-shrink: 0; 
+}
+
 .nav-link:hover, .nav-link.active {
     color: var(--text-light);
     background: rgba(255, 255, 255, 0.05);
