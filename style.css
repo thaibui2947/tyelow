@@ -1160,7 +1160,7 @@ body {
 .vote-count strong { color: var(--accent-orange); font-size: 20px; font-weight: 800; }
 .vote-thanks-msg { margin-top: 16px; color: #0e6b30; font-weight: 600; font-size: 14px; animation: fadeIn 0.5s; }
 /* =========================================================
-   THANH CUỘN
+   TÍNH NĂNG
    ========================================================= */
    /* Tùy chỉnh thanh cuộn cho Chrome, Edge, Safari */
 ::-webkit-scrollbar {
@@ -1180,4 +1180,142 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
     background: rgba(255, 255, 255, 0.4); /* Sáng lên khi rê chuột vào */
+}
+/* ================= BACK TO TOP ================= */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 25px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    
+    /* Hiệu ứng kính mờ Glassmorphism cao cấp */
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    
+    /* Màu sắc & Đổ bóng */
+    color: #ffffff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    
+    /* Trạng thái ẩn & Hiệu ứng xuất hiện bật nảy (Spring Physics) */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px) scale(0.8);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 999;
+    
+    /* Chống viền xanh khi chạm trên điện thoại */
+    -webkit-tap-highlight-color: transparent !important;
+    outline: none !important;
+}
+
+/* Kiểu dáng Icon Mũi tên */
+.back-to-top .arrow-icon {
+    width: 22px;
+    height: 22px;
+    transition: transform 0.3s ease;
+}
+
+/* Khi cuộn xuống -> Nút hiện ra mượt mà */
+.back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+/* Hiệu ứng rê chuột (Hover) -> Nổi lên + Phát sáng viền nhẹ */
+.back-to-top:hover {
+    background: rgba(255, 255, 255, 0.22);
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 10px 25px rgba(255, 255, 255, 0.15), 
+                0 0 15px rgba(255, 255, 255, 0.2);
+    transform: translateY(-5px) scale(1.08);
+}
+
+/* Hiệu ứng mũi tên nhích nhẹ lên trên khi hover */
+.back-to-top:hover .arrow-icon {
+    transform: translateY(-3px);
+}
+
+/* Hiệu ứng chạm / Bấm (Active) -> Nhấn lún xuống chân thật */
+.back-to-top:active {
+    transform: translateY(-1px) scale(0.92);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+/* ==================== IMAGE LIGHTBOX POPUP ==================== */
+.lightbox-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    background: rgba(15, 23, 42, 0.85); /* Nền tối */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* Trạng thái ẩn mặc định */
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.lightbox-modal.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+.lightbox-content {
+    max-width: 95%;
+    max-height: 90%;
+    border-radius: 12px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
+    
+    /* Hiệu ứng thu phóng mượt */
+    transform: scale(0.7);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.lightbox-modal.show .lightbox-content {
+    transform: scale(1);
+}
+
+/* Nút X đóng popup */
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: #ffffff;
+    font-size: 45px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.lightbox-close:hover,
+.lightbox-close:active {
+    color: #ff4757; /* Đổi màu đỏ khi chạm/hover */
+}
+
+/* Biến con trỏ thành kính lúp cho các ảnh được phép click */
+.zoomable-img {
+    cursor: zoom-in;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.zoomable-img:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.15);
 }
