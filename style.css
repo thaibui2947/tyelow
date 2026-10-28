@@ -1319,3 +1319,58 @@ body {
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(255, 255, 255, 0.15);
 }
+/* ==================== CLICK ==================== */
+
+/* 1. Mở rộng hiệu ứng chuyển động mượt cho tất cả các nút và thẻ tương tác */
+button, 
+a, 
+.btn, 
+.nav-link, 
+.vote-btn, 
+.back-to-top,
+.card,
+.dropdown-toggle {
+    transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1), 
+                filter 0.15s ease, 
+                box-shadow 0.15s ease,
+                background-color 0.2s ease !important;
+}
+
+/* 2. Hiệu ứng khi BẤM / CHẠM VÀO (Trạng thái Active) */
+button:active, 
+a:active, 
+.btn:active, 
+.nav-link:active, 
+.vote-btn:active, 
+.back-to-top:active,
+.card:active {
+    /* Co nhỏ nhẹ nút lại 5% tạo cảm giác nhấn chân thật */
+    transform: scale(0.95) translateY(1px) !important;
+    
+    /* Ửng sáng giao diện glassmorphism */
+    filter: brightness(1.25) !important;
+    
+    /* Đổ bóng chìm xuống */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+}
+/* Styling cho vòng tròn gợn sáng khi click */
+.ripple-btn {
+    position: relative;
+    overflow: hidden !important; /* Giữ vòng tròn nằm gọn trong góc bo của nút */
+}
+
+.ripple-circle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4); /* Màu ánh sáng gợn ra */
+    transform: scale(0);
+    animation: ripple-out 0.55s linear;
+    pointer-events: none; /* Tránh cản trở sự kiện click */
+}
+
+@keyframes ripple-out {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}

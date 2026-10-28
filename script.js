@@ -267,3 +267,34 @@ if (backToTopBtn) {
         });
     });
 }
+// ==================== DYNAMIC RIPPLE CLICK EFFECT ====================
+document.addEventListener('DOMContentLoaded', () => {
+    // Tìm toàn bộ thẻ nút bấm, liên kết menu, nút vote, v.v...
+    const interactiveElements = document.querySelectorAll('button, .btn, .nav-link, .vote-btn, .back-to-top, a.nav-link');
+
+    interactiveElements.forEach(element => {
+        // Thêm class tạo khung chứa hiệu ứng
+        element.classList.add('ripple-btn');
+
+        element.addEventListener('click', function (e) {
+            // Lấy tọa độ điểm chạm/click
+            const rect = this.getBoundingClientRect();
+            const circle = document.createElement('span');
+            const diameter = Math.max(rect.width, rect.height);
+            const radius = diameter / 2;
+
+            circle.style.width = circle.style.height = `${diameter}px`;
+            circle.style.left = `${e.clientX - rect.left - radius}px`;
+            circle.style.top = `${e.clientY - rect.top - radius}px`;
+            circle.classList.add('ripple-circle');
+
+            // Xóa gợn sóng cũ nếu nhấp liên tục
+            const existingRipple = this.querySelector('.ripple-circle');
+            if (existingRipple) {
+                existingRipple.remove();
+            }
+
+            this.appendChild(circle);
+        });
+    });
+});
