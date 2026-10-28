@@ -1,3 +1,18 @@
+// ==================== INERTIA SMOOTH SCROLLING (LENIS) ====================
+if (typeof Lenis !== 'undefined') {
+    const lenis = new Lenis({
+        duration: 1.2,       // Thời gian trượt (giây) - Càng cao cuộn càng mềm
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Gia tốc trượt
+        smooth: true,
+        smoothTouch: false,  // Tắt trên điện thoại để nhường chỗ cho cuộn tự nhiên của máy
+    });
+
+    function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+}
 // Bật / Tắt Menu trên điện thoại khi bấm vào nút Hamburger
 document.addEventListener('DOMContentLoaded', () => {
     const mobileToggle = document.getElementById('mobileToggle');

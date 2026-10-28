@@ -1,9 +1,3 @@
-html {
-    scroll-behavior: smooth;
-    /* Bù trừ khoảng cách nếu bạn có thanh Header cố định ở trên cùng (Sticky Header) */
-    scroll-padding-top: 80px; 
-}
-
 body {
     /* Tối ưu cuộn mượt trên thiết bị di động iOS/Android */
     -webkit-overflow-scrolling: touch;
